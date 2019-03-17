@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-on指令</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="handle">click me</button> <br><br>
+        <button @dblclick="add">{{ count }}</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                count: 1
+            },
+            methods: {
+                handle: function () {
+                    console.log('缘分让我们相遇光年之外')
+                },
+                add: function () {
+                    this.count += 1
+                }
+            }
+        })
+    </script>
+</body>
+</html>

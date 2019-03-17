@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文本插值的用法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ msg }} <br>
+        {{ 6 + 4 }} <br>
+        {{ 6 < 4 ? msg : text }}
+
+        <!-- 文本插值的形式，其中不能书写表达式,只支持单个表达式 -->
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: '我多想再见你',
+                text: '哪怕匆匆一眼就别离'
+            }
+        })
+    </script>
+</body>
+</html>

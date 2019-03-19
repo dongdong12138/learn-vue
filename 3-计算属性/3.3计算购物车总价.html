@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计算购物车总价</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        购物车总价为：{{ sum }}
+    </div>
+
+    <script>
+        // 需求：计算两个购物车中所有商品总价
+        var app = new Vue({
+            el: '#app',
+            data: {
+                package1: [
+                    {'name': 'iphone', 'price': 8000, 'count': 2},
+                    {'name': 'ipad', 'price': 4000, 'count': 3}
+                ],
+                package2: [
+                    {'name': 'car', 'price': 40000, 'count': 1},
+                    {'name': 'house', 'price': 2000, 'count': 2}
+                ]
+            },
+            computed: {
+                sum: function () {
+                    var price = 0
+                    for (var i = 0; i < this.package1.length; i ++) {
+                        price += this.package1[i].price * this.package1[i].count
+                    }
+                    for (var j = 0; j < this.package2.length; j ++) {
+                        price += this.package2[j].price * this.package2[j].count
+                    }
+                    return price
+                }
+            }
+        })
+    </script>
+</body>
+</html>

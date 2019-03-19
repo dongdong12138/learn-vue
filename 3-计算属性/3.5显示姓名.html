@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>显示姓名（getter 和 setter）</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        我的名字是：{{ fullName }}
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                firstName: '董',
+                lastName: '哼哼'
+            },
+            computed: {  // 计算属性的默认用法是 getter 函数
+                // fullName: function () {
+                //     return this.firstName + this.lastName
+                // }
+
+                fullName: {
+                    get: function () {
+                        return this.firstName + this.lastName
+                    },
+                    set: function (newValue) { // 新值用逗号分隔
+                        var name = newValue.split(',')
+                        this.firstName = name[0]
+                        this.lastName = name[1]
+                        
+                        // return this.firstName + this.lastName
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

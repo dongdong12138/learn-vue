@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-cloak指令</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p v-cloak>{{ text }}</p>
+    </div>
+
+    <!-- v-cloak：解决初始化慢导致页面闪动 -->
+    <!-- 一般与display: none配合使用 -->
+
+    <script>
+        // while(true) {}
+        var app = new Vue({
+            el: '#app',
+            data: {
+                text: '天上的星星笑地上的人'
+            }
+        })
+    </script>
+</body>
+</html>

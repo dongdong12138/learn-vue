@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组过滤</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ matchOO }}
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                arr: ['book', 'pen', 'pencil']
+            },
+            computed: {
+                matchOO: function () {
+                    return this.arr.filter(function (value) {  // 参数value代表要过滤的每一项
+                        return value.match(/oo/)
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

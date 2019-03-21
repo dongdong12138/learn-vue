@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>修饰符-prevent</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <form action=""  @submit.prevent="handle">
+            <button type="submit">点我提交</button>
+        </form>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                handle: function () {
+                    alert('我被提交了')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

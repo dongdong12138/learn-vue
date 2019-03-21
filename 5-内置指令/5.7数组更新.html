@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组更新</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="study in arr">{{ study }}</li>
+        </ul>
+        <button @click="sortArr">sort排序</button>
+        <button @click="reverseArr">反转</button>
+
+        <hr>
+
+        <button @click="changeOne">改变数组指定项</button>
+        <button @click="changeLength">改变数组长度</button>
+    </div>
+
+    <!-- 控制台中试一试以下数组的方法： -->
+    <!-- push：往后添加
+    pop: 从后移除
+    shift: 从前删除
+    unshift: 往前添加
+    splice: 删除/添加
+    sort：排序(demo: 点击按钮，实现排序)
+    reverse：反转(demo: 点击按钮，反转数组) -->
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                arr: ['book', 'pen', 'pencil']
+            },
+            methods: {
+                sortArr: function () {
+                    this.arr.sort(function (a, b) {
+                        return a.length - b.length
+                    })
+                },
+                reverseArr: function () {
+                    this.arr.reverse()
+                },
+                changeOne: function () {
+                    this.arr[0] = '董浩'
+                },
+                changeLength: function () {
+                    this.arr.length = 10
+                }
+            }
+        })
+
+        Vue.set(app.arr, 1, '董浩')
+        Vue.set(app.arr, 2, {'name': 'donghao'})
+    </script>
+</body>
+</html>

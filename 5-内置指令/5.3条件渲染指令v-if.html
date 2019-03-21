@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>条件渲染指令 v-if</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-if="6<3">{{ apple }}</p>
+        <p v-else-if="5<2">{{ banana }}</p>
+        <p v-else>{{ pineapple }}</p>
+    </div>
+
+    <!-- v-if 后接的是等号，等号后的内容必须是布尔值 -->
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                apple: 'apple',
+                banana: 'banana',
+                pineapple: 'pineapple'
+            }
+        })
+    </script>
+</body>
+</html>

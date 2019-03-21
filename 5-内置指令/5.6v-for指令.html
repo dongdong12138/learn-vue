@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-for指令</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        v-for的用法：<br>
+        (1) 遍历多个对象：<br>
+        学好Vue的方法是：<br>
+        <ul>
+            <li v-for="method in vueMethods">{{ method.name }}</li>
+        </ul>
+        <br>
+        带索引的写法：括号中第一个参数是值，第二个参数是索引
+        <ul>
+            <li v-for="(value, index) in vueMethods">{{ value.name }} --- {{ index }}</li>
+        </ul>
+
+        <hr>
+
+        (2) 遍历一个对象的多个属性：<br>
+        <dl>
+            <dt>{{person.name}}</dt>
+            <dd v-for="attr in person">{{ attr }}</dd>
+        </dl>
+
+        <br>
+
+        拿到 value，key，index 的写法：<br>
+        <dl>
+            <dt>{{ person.name }}</dt>
+            <dd v-for="(value, key, index) in person">{{ key }}---{{ value }}---{{ index }}</dd>
+        </dl>
+
+
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                // 遍历多个对象，一定是遍历数组中的多个对象
+                vueMethods: [
+                    {'name': '多思考'},
+                    {'name': '勤练习'},
+                    {'name': '听老张讲课'}
+                ],
+
+                // 遍历一个对象的多个属性
+                person: {
+                    'name': '董浩',
+                    'age': 18,
+                    'gender': '男'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

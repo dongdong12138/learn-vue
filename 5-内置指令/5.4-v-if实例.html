@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-if实例</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        span {
+            width: 3em;
+            display: inline-block;
+            text-align: justify;
+            height: 20px;
+            line-height: 20px;
+            overflow: hidden;
+            vertical-align: middle;
+        }
+        span::after {
+            content: "";
+            width: 100%;
+            display: inline-block;
+        }
+        div {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div v-if="type === 'userName'">
+            <span>用户名</span>：<input type="text" name="userName" placeholder="请输入用户名" key="userName">
+        </div>
+        <div v-else>
+            <span>密码</span>：<input type="password" name="userPwd" key="password">
+        </div>
+        <div>
+            <button @click="handle">click me</button>
+        </div>
+    </div>
+
+    <!-- 只会渲染变化的元素，也就是说，input元素被复用了 -->
+    <!-- 解决方法：加key，唯一，提供key值可以来决定是否复用该元素。 -->
+
+    <script>
+        // 需求：点击按钮，实现用户名与密码框的切换
+        // 实现：如果 type == name，显示用户名输入框；如果 type == password，显示密码输入框
+        var app = new Vue({
+            el: '#app',
+            data: {
+                type: 'userName'
+            },
+            methods: {
+                handle: function () {
+                    this.type = this.type === 'userName' ? 'password': 'userName'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

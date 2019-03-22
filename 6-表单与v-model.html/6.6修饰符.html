@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>修饰符</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        lazy修饰符：失去焦点或敲回车键之后再更新 <br><br>
+        <input type="text" v-model="inputStr1">---{{ inputStr1 }} <br><br>
+        <input type="text" v-model.lazy="inputStr2">---{{ inputStr2 }}
+
+        <hr>
+
+        number修饰符：<br><br>
+        <input type="text" v-model="isNum1"> ---{{ typeof isNum1 }} ---{{ isNum1 }} <br>
+        <input type="text" v-model.number="isNum2"> ---{{ typeof isNum2 }} ---{{ isNum2 }}
+
+        <hr>
+
+        trim修饰符：<br><br>
+        <input type="text" v-model="trimStr1"> ---{{ trimStr1.length }} <br><br>
+        <input type="text" v-model.trim="trimStr2"> ---{{ trimStr2.length }}
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                inputStr1: '',
+                inputStr2: '',
+
+                isNum1: '',
+                isNum2: '',
+
+                trimStr1: '',
+                trimStr2: ''
+            }
+        })
+    </script>
+</body>
+</html>

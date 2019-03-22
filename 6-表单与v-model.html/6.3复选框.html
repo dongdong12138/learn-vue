@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>复选框</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        单个复选框：<br>
+        使用v-bind：<input type="checkbox" name="fruit" v-bind:checked="value"> <br>
+        使用v-model：<input type="checkbox" name="" v-model="value">
+        
+        <!-- 使用v-bind需要绑定属性，v-model绑定一个值就行了 -->
+
+        <hr>
+
+        多个复选框：<br>
+        苹果：<input type="checkbox" name="fruits" value="apple" v-model="fruit"> <br>
+        桃子：<input type="checkbox" name="fruits" value="peach" v-model="fruit"> <br>
+        菠萝：<input type="checkbox" name="fruits" value="pineapple" v-model="fruit"> <br>
+        西瓜：<input type="checkbox" name="fruits" value="watermelon" v-model="fruit"> <br>
+        ---{{ fruit }}
+    </div>
+
+    <!-- v-model绑定的是选定的复选框的value值 -->
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                value: true,
+                fruit: ['apple', 'pineapple']
+            }
+        })
+    </script>
+</body>
+</html>

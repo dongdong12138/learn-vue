@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>绑定值</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        单选按钮：<br>
+        <!-- <input type="radio" v-bind:checked="isChecked"> -->
+        <input type="radio" v-model:checked="isChecked" v-bind:value="value">
+        ---{{ isChecked }}
+
+        <hr>
+
+        多选按钮：---选中和不选中的value不一样<br>
+        <input type="checkbox" name="" v-model="toggle" :true-value="value1" :false-value="value2">
+        ---{{ toggle }}
+
+        <hr>
+
+        下拉框：<br>
+        <select name="" v-model="fruit">
+            <option :value="apple">苹果</option>
+            <option :value="peach">桃子</option>
+            <option :value="banana">香蕉</option>
+            <option :value="pineapple">菠萝</option>
+        </select>
+        ---{{ typeof fruit }} ---{{ fruit }}
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isChecked: true,
+                value: '111',
+
+                toggle: true,
+                value1: '我被选中了',
+                value2: '我没被选中',
+
+                fruit: 'banana',
+                apple: 'apple',
+                peach: {'name': 'peach'},
+                banana: ['banana'],
+                pineapple: 'pineapple'
+            }
+        })
+    </script>
+</body>
+</html>

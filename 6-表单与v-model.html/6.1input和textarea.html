@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>input和textarea</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="value" value="我是初始化文本">
+        {{ value }}
+
+        <br><br>
+
+        <textarea name="" id="" cols="30" rows="10" v-model="msg">我是初始化文本</textarea>
+        {{ msg }}
+    </div>
+
+    <!-- 注意：所显示的值只依赖于所绑定的数据，不再关心初始化时的插入的value。 -->
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                value: '我是value',
+                msg: '我是msg'
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>点谁谁加demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-component></my-component>
+        <my-component></my-component>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {},
+            components: {
+                'my-component': {
+                    template: '<button @click="plus">{{ count }}</button>',
+                    data: function () {
+                        return {
+                            count: 0
+                        }
+                    },
+                    methods: {
+                        plus: function () {
+                            this.count += 1
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

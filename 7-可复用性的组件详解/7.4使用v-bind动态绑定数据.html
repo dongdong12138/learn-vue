@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用v-bind动态绑定数据</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app" style="height: 200px;border: 1px solid green;">
+        <input type="text" v-model="parentMsg">
+
+        <son-component v-bind:msg="parentMsg"></son-component>
+    </div>
+
+    <script>
+        // 需求：父组件中的input框中输入什么，子组件就显示什么
+        var app = new Vue({
+            el: '#app',
+            data: {
+                parentMsg: '父组件内容'
+            },
+            components: {
+                'son-component': {
+                    props: ['msg'],
+                    template: '<div style="border: 1px solid red;">{{ msg }}</div>'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

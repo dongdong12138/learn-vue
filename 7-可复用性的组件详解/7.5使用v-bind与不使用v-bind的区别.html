@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>父组件向子组件传递数据，使用v-bind和不使用v-bind的区别</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app" style="height: 200px;border: 1px solid green;">
+        <h2>我是父组件</h2>
+
+        <!-- 不用v-bind，默认传的是字符串 -->
+        <!-- 用v-bind，会自动识别传入的数据的数据类型 -->
+        <son-component msg="[3, 6, 9]"></son-component>
+        <son-component v-bind:msg="[3, 6, 9]"></son-component>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {},
+            components: {
+                'son-component': {
+                    props: ['msg'],
+                    template: '<div style="border: 1px solid red;">{{ msg.length }}</div>'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

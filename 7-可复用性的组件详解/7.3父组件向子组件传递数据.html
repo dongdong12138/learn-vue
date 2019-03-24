@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>父组件向子组件传递数据</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app" style="height: 200px; border: 1px solid green;">
+        <h2>我是父组件</h2>
+
+        <app-component msg="我多想再见你"></app-component>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {},
+            components: {
+                'app-component': {
+                    props: ['msg'],
+                    template: '<div>{{msg}}</div>'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

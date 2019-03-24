@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        #app {
+            width: 600px;
+            height: 300px;
+            border: 1px solid green;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>我是父组件</h2>
+        <input type="number" step="2" v-model="width"> --{{ width }}
+
+        <!-- 动态绑定width，所以需要v-bind -->
+        <my-component :width="width"></my-component>
+    </div>
+
+    <script>
+        // 需求：通过input中输入的数据直接改变div的宽度
+        Vue.component('my-component', {
+            props: ['width'],
+            template: '<div :style="style"></div>',
+            // data: function () {},
+            computed: {
+                style: function () {
+                    return {
+                        width: this.width + 'px',
+                        height: '30px',
+                        background: 'red'
+                    }
+                }
+            }
+        })
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                width: ''
+            }
+        })
+    </script>
+</body>
+</html>

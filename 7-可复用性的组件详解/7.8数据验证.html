@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        #app {
+            width: 600px;
+            height: 300px;
+            border: 1px solid green;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <type-component :a="a" :b="b" :c="c" :d="d" :e="e" :f="f" :g="g"></type-component>
+    </div>
+
+    <script>
+        Vue.component('typeComponent', {
+            props: {
+                a: Number,
+                b: [String, Number],
+
+                // 必须是布尔类型，并且默认值为true
+                c: {
+                    type: Boolean,
+                    default: true
+                },
+
+                // 必须是Number类型，并且是必传项
+                d: {
+                    type: Number,
+                    required: true
+                },
+
+                // 数组的 default 需要用 function 返回
+                e: {
+                    type: Array,
+                    default: function () {
+                        return [1, 2, 3]
+                    }
+                },
+
+                // 自定义验证函数
+                f: {
+                    validator: function (value) {
+                        return value > 10
+                    }
+                },
+
+                g: {
+                    type: Function
+                }
+            },
+            template: '<div>{{a}}--{{b}}--{{c}}--{{d}}--{{e}}--{{g}}</div>'
+        })
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                a: 1,
+                b: 'hello',
+                c: false,
+                d: 123,
+                e: [],
+                f: 88,
+                g: console.log()
+            }
+        })
+    </script>
+</body>
+</html>

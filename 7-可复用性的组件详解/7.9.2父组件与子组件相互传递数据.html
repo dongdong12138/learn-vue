@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>父组件与子组件相互传递数据</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        #app {
+            width: 600px;
+            height: 300px;
+            border: 1px solid green;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        您的余额是：{{total}}
+        <son-component :total="total" @change="handleTotal"></son-component>
+    </div>
+
+    <script>
+        // 需求：通过加号按钮和减号按钮来给父组件传递数据
+        // 实现：父组件先向子组件传递total，子组件改变total，再传回给父组件
+        Vue.component('son-component', {
+            props: ['total'],
+            template: `
+                <div>
+                    <button @click="handleAdd">+100</button>
+                    <button @click="handleReduce">-100</button>
+                </div>
+            `,
+            data: function () {
+                return {
+                    count: this.total
+                }
+            },
+            methods: {
+                handleAdd: function () {
+                    this.count += 100
+                    this.$emit('change', this.count)
+                },
+                handleReduce: function () {
+                    this.count -= 100
+                    this.$emit('change', this.count)
+                }
+            }
+        })
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                total: 2000
+            },
+            methods: {
+                handleTotal: function (value) {
+                    this.total = value
+                }
+            }
+        })
+    </script>
+</body>
+</html>

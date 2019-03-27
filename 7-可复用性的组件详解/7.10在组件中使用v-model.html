@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        #app {
+            width: 600px;
+            height: 300px;
+            border: 1px solid green;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        您的余额是：{{total}}
+        <son-component v-model="total" :total="total"></son-component>
+    </div>
+
+    <script>
+        Vue.component('son-component', {
+            props: ['total'],
+            template: `
+                <div>
+                    <button @click="handleAdd">+100</button>
+                    <button @click="handleReduce">-100</button>
+                </div>
+            `,
+            data: function () {
+                return {
+                    count: this.total
+                }
+            },
+            methods: {
+                handleAdd: function () {
+                    this.count += 100
+                    this.$emit('input', this.count)
+                },
+                handleReduce: function () {
+                    this.count -= 100,
+                    this.$emit('input', this.count)
+                }
+            }
+        })
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                total: 2000
+            }
+        })
+    </script>
+</body>
+</html>

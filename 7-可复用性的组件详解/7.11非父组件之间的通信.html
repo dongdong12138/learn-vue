@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        #app {
+            width: 600px;
+            height: 300px;
+            border: 1px solid green;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <a-component></a-component>
+        <b-component></b-component>
+    </div>
+
+    <script>
+        Vue.component('a-component', {
+            template: '<button @click="handle">点我向B组件传递数据</button>',
+            data: function () {
+                return {
+                    aaa: '我是A组件中的内容'
+                }
+            },
+            methods: {
+                handle: function () {
+                    this.$root.bus.$emit('lala', this.aaa)
+                }
+            }
+        })
+        Vue.component('b-component', {
+            template: '<div></div>',
+            created: function () {
+                this.$root.bus.$on('lala', function (value) {
+                    console.log(value)
+                })
+            }
+        })
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                bus: new Vue()  // bus 中介
+            }
+        })
+    </script>
+</body>
+</html>

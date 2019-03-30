@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        #app {
+            width: 600px;
+            height: 300px;
+            border: 1px solid green;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <son-component>
+            <p>我是父组件的内容</p>
+        </son-component>
+    </div>
+
+    <script>
+        Vue.component('son-component', {
+            template: `
+                <div>
+                    <slot>如果父组件没有插入内容，我就默认出现</slot>
+                </div>
+            `
+        })
+        
+        var app = new Vue({
+            el: '#app',
+            data: {}
+        })
+    </script>
+</body>
+</html>

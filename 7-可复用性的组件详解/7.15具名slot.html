@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        #app {
+            width: 600px;
+            height: 300px;
+            border: 1px solid green;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <name-component>
+            <p>锄禾日当午</p>
+            <p>汗滴禾下土</p>
+            <footer slot="footer">By dongdong</footer>
+            <p>谁知盘中餐</p>
+            <h2 slot="header">锄禾</h2>
+            <p>粒粒皆辛苦</p>
+        </name-component>
+    </div>
+
+    <script>
+        Vue.component('name-component', {
+            template: `
+                <div>
+                    <div class="header">
+                        <slot name="header"></slot>
+                    </div>
+                    <div class="main">
+                        <slot></slot>
+                    </div>
+                    <div class="footer">
+                        <slot name="footer"></slot>
+                    </div>                    
+                </div>
+            `
+        })
+        
+        var app = new Vue({
+            el: '#app',
+            data: {}
+        })
+    </script>
+</body>
+</html>

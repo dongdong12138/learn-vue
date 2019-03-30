@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        #app {
+            width: 600px;
+            height: 300px;
+            border: 1px solid green;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <my-component>
+            <!-- 1、Vue 2.5.0 之前，要想使用作用域插槽获取子组件数据，必须使用 template -->
+            <!-- <template slot="child" slot-scope="prop">
+                {{ prop.text }}
+                {{ prop.dong }}
+            </template> -->
+
+            <!-- 2、Vue 2.5.0 之后，可以写在其他标签上 -->
+            <p slot="child" slot-scope="prop">
+                {{ prop.text }}
+                {{ prop.dong }}
+            </p>
+        </my-component>
+    </div>
+
+    <script>
+        Vue.component('my-component', {
+            template: `
+                <div>
+                    <slot name="child" text="我是子组件数据" dong="哼哼哈嘿"></slot>
+                </div>
+            `
+        })
+        
+        var app = new Vue({
+            el: '#app',
+            data: {}
+        })
+    </script>
+</body>
+</html>

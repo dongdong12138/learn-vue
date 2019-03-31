@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        #app {
+            width: 600px;
+            height: 300px;
+            border: 1px solid green;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <my-component>
+            <template>
+                <h3 slot="header"><span>锄禾</span></h3>
+                <p>锄禾日当午</p>
+                <p>汗滴禾下土</p>
+                <p>谁知盘中餐</p>
+                <p>粒粒皆辛苦</p>
+                <footer slot="footer">By 董董</footer>
+            </template>
+        </my-component>
+    </div>
+
+    <script>
+        Vue.component('my-component', {
+            template: `
+                <div>
+                    <div class="header">
+                        <slot name="header"></slot>
+                    </div>
+                    <div class="main">
+                        <slot></slot>
+                    </div>
+                    <div class="footer">
+                        <slot name="footer"></slot>
+                    </div>
+                </div>
+            `,
+            mounted: function () {
+                var header = this.$slots.header
+                var text = header[0].elm.innerText
+                var html = header[0].elm.innerHTML
+                console.log(header)
+                console.log(text)
+                console.log(html)
+
+                var footer = this.$slots.footer
+                console.log(footer)
+
+                var main = this.$slots.main
+                console.log(main)
+            }
+        })
+        
+        var app = new Vue({
+            el: '#app',
+            data: {}
+        })
+    </script>
+</body>
+</html>

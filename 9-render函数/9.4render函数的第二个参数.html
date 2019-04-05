@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        #app {
+            width: 600px;
+            height: 300px;
+            border: 1px solid green;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <child></child>
+    </div>
+
+    <script>
+        Vue.component('child', {
+            // 第二个参数是 object 类型
+            render: function (createElement) {
+                return createElement({
+                    template: '<h2>你那么爱他</h2>'
+                }, {
+                    class: {
+                        foo: true,
+                        baz: false
+                    },
+                    style: {
+                        color: 'red',
+                        fontSize: '20px'
+                    },
+                    // 正常的 html 特性
+                    attrs: {
+                        id: 'dongdong',
+                        src: 'https://www.baidu.com'
+                    },
+                    // 用来写原生的 dom 属性
+                    domProps: {
+                        innerHTML: '<em style="color: blue;">为什么不把他留下</em>'
+                    }
+                })
+            }
+        })
+        
+        var app = new Vue({
+            el: '#app',
+            data: {}
+        })
+    </script>
+</body>
+</html>

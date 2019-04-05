@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        #app {
+            width: 600px;
+            height: 300px;
+            border: 1px solid green;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <child></child>
+    </div>
+
+    <script>
+        Vue.component('child', {
+            // 第一个参数必须是createElement
+            // 必须要 return createElement()
+            // createElement() ，括号里可以是 String、Object、Function
+            render: function (createElement) {
+                return createElement(function () {
+                    return {
+                        template: '<div>了上课就发收到</div>'
+                    }
+                }())  // 如果是函数，这里要执行函数，才有效果
+            }
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {}
+        })
+    </script>
+</body>
+</html>

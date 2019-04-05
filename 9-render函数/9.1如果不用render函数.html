@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>不用render函数，用Vue组件定义</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+      #app {
+        width: 600px;
+        height: 300px;
+        border: 1px solid green;
+        font-weight: 700;
+        font-size: 16px;
+        padding: 3px;
+        margin: 0 auto;
+        margin-top: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <child-component :level="level">
+        我多想再见你
+      </child-component>
+    </div>
+
+    <template id="hdom">
+      <div>
+        <h1 v-if="level === 1">
+          <slot></slot>
+        </h1>
+        <h2 v-else-if="level === 2">
+          <slot></slot>
+        </h2>
+        <h3 v-else-if="level === 3">
+          <slot></slot>
+        </h3>
+      </div>
+    </template>
+    <script>
+      // 使用 Vue 组件定义
+      Vue.component("child-component", {
+        props: ["level"],
+        template: "#hdom"
+      });
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          level: 3
+        }
+      });
+    </script>
+  </body>
+</html>

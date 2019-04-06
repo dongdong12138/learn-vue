@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        #app {
+            width: 600px;
+            height: 300px;
+            border: 1px solid green;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <my-component value="dongdong"></my-component>
+    </div>
+
+    <script>
+        Vue.component('my-component', {
+            props: ['value'],
+            functional: true,    // 表示当前的 Vue 实例无状态，无实例
+                                 // 无实例指的是没有 this
+                                 // 因为没有this，所以提供了 context
+            render: function (createElement, context) {
+                return createElement('button', {
+                    on: {
+                        click: function () {
+                            console.log(context)
+                            console.log(context.parent)
+                            console.log(context.parent.text)
+                            console.log(context.props.value)
+                        }
+                    }
+                }, 'click me')
+            }
+        })
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                text: '我是父组件'
+            }
+        })
+    </script>
+</body>
+</html>

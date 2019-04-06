@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        #app {
+            width: 600px;
+            height: 300px;
+            border: 1px solid green;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <child :show="show"></child>
+        <button @click="switchImg">click me</button>
+    </div>
+
+    <script>
+        // 需求：点击按钮，切换图片
+        Vue.component('child', {
+            props: ['show'],
+            render: function (createElement) {
+                var imgSrc
+                if (this.show) {
+                    imgSrc = 'http://p1.music.126.net/hKoJzoX5oLNVA4TRs-ccrg==/109951163819788290.jpg'
+                } else {
+                    imgSrc = 'http://p1.music.126.net/9aQoVJsU83SeTlLAq2ozcA==/109951163819797856.jpg'
+                }
+                return createElement('img', {
+                    attrs: {
+                        src: imgSrc
+                    },
+                    style: {
+                        width: '100%',
+                    }
+                })
+            }
+        })
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                show: true
+            },
+            methods: {
+                switchImg: function () {
+                    this.show = !this.show
+                }
+            }
+        })
+    </script>
+</body>
+</html>

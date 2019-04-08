@@ -1,7 +1,7 @@
 {
-  "name": "vueapp",
+  "name": "axiosapp",
   "version": "1.0.0",
-  "description": "demo",
+  "description": "A Vue.js project",
   "author": "dongdong <286084845@qq.com>",
   "private": true,
   "scripts": {
@@ -10,8 +10,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.2"
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

@@ -1,7 +1,8 @@
 <template>
   <div class="hello">
     <h3>我是 axiosapp，用来发出请求，拦截响应</h3>
-    <button @click="getData">发送请求</button>
+    <button @click="getData">get发送请求</button>
+    <button @click="postData">post发送请求</button>
     <ul>
       <li v-for="item in items">{{ item.title }}</li>
     </ul>
@@ -11,6 +12,7 @@
 <script>
   import Vue from 'vue'
   import axios from 'axios'
+  import qs from 'qs'
   Vue.prototype.$http = axios
   export default {
   name: 'HelloWorld',
@@ -32,6 +34,18 @@
         }).catch(function (err) {
           console.log(err)
         })
+    },
+    postData() {
+      this.$http.post('https://cnodejs.org/api/v1/topics', qs.stringify({    // post 这个 url 访问不到，要安装 qs ，
+        params: {
+          page: 1,
+          limit: 20
+        }
+      })).then((rec) => {
+        console.log(rec)
+      }).catch((err) => {
+        console.log(err)
+      })
     }
   }
 }
